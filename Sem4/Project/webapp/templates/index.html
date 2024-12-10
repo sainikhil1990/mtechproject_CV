@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <style>
+        #imageContainer img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Image or Video</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*,video/*">
+        <input type="submit" value="Upload">
+    </form>
+    <button id="Run Object Detection">Run Script</button>
+    <pre id="output"></pre>
+
+    <script>
+        document.getElementById('runButton').addEventListener('click', function() {
+            fetch('/run-script', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('output').textContent = data.output || data.error;
+                });
+        });
+    </script>
+    <button id="showButton">Show Image and Data</button>
+    <div id="imageContainer"></div>
+    <pre id="dataContainer"></pre>
+
+    <script>
+        document.getElementById('showButton').addEventListener('click', function() {
+            fetch('/get-data', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('dataContainer').textContent = JSON.stringify(data, null, 2);
+                });
+
+            fetch('/get-image')
+                .then(response => response.blob())
+                .then(blob => {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(blob);
+                    document.getElementById('imageContainer').appendChild(img);
+                });
+        });
+    </script>
+</body>
+</html>
+

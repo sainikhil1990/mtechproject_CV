@@ -1,0 +1,9 @@
+https://github.com/Walid-khaled/YOLO-Object-Detection-for-Pick-and-Place-task-using-ROS-on-KUKA-iiwa
+
+https://roboticscasual.com/ros-tutorial-how-to-use-opencv-in-a-robot-pick-and-place-task-for-computer-vision/
+
+https://www.researchgate.net/publication/271769133_Object_Detection_and_Recognition_for_a_Pick_and_Place_Robot
+
+https://www.jetir.org/papers/JETIR2202153.pdf
+
+
